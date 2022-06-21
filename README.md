@@ -1,6 +1,6 @@
 # Find a Coach👩‍🏫
 
-This template should help get you started developing with Vue 3 in Vite.
+This website helps you find a coach, register yourself as a coach and send and receive messages. 
 
 ## Recommended IDE Setup
 
@@ -12,8 +12,29 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
+1.👯 Clone the Repository:
 ```sh
-npm install
+$ git clone https://github.com/umayu06/find-a-coach.git 
+```
+
+2. Then move to the working directory.
+```sh
+$ cd find-a-coach
+```
+
+3. Install node modules
+```sh
+$ npm install
+```
+
+4. Then move to the server folder.
+```sh
+$ cd server
+```
+
+5. Install node modules
+```sh
+$ npm install
 ```
 
 ### Compile and Hot-Reload for Development
