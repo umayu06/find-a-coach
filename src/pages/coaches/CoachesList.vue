@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     hasCoaches() {
-      return !this.isLoading && this.$store.getters['coaches/hasCoaches'];
+      return !this.isLoading && this.filteredCoaches.length;
     },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];

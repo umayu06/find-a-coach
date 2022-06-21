@@ -3,7 +3,7 @@
     <section v-if="!!selectedCoach">
       <section>
         <base-card>
-          <h2>{{ fullName }}</h2>
+          <h2>{{ name }}</h2>
           <h3>${{ rate }}/hour</h3>
         </base-card>
       </section>
@@ -11,7 +11,9 @@
         <header>
           <base-card>
             <h3>Interested? Reach out now!</h3>
-            <base-button link :to="contactLink" mode="outline">Contact</base-button>
+            <base-button v-if="!routeHasContact" link :to="contactLink" mode="outline"
+              >Contact</base-button
+            >
             <router-view></router-view>
           </base-card>
         </header>
@@ -51,14 +53,17 @@ export default {
     );
   },
   computed: {
-    fullName() {
-      return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
+    name() {
+      return this.selectedCoach.name;
     },
     contactLink() {
       return this.$route.path + '/contact';
     },
     rate() {
       return this.selectedCoach.hourlyRate;
+    },
+    routeHasContact() {
+      return this.$route.path.includes('contact');
     },
   },
 };

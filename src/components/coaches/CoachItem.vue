@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h3>{{ fullName }}</h3>
+    <h3>{{ name }}</h3>
     <h4>${{ rate }}/hour</h4>
     <div>
       <base-badge v-for="area in coach.areas" :key="area" :title="area" :type="area"></base-badge>
@@ -19,8 +19,8 @@ export default {
     coach: Object,
   },
   computed: {
-    fullName() {
-      return this.coach.firstName + ' ' + this.coach.lastName;
+    name() {
+      return this.coach.name;
     },
     rate() {
       return this.coach.hourlyRate;

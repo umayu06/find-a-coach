@@ -4,18 +4,37 @@
       <h1>
         <router-link to="/">Find a Coach</router-link>
       </h1>
-      <ul>
+      <ul v-if="showRoutes">
         <li>
           <router-link to="/coaches">All Coaches</router-link>
         </li>
         <li>
           <router-link to="/requests">Requests</router-link>
         </li>
+        <li>
+          <base-button to="/login" mode="flat" @click="logout()">Logout</base-button>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
+<script>
+export default {
+  name: 'TheHeader',
+  computed: {
+    showRoutes() {
+      return !['/login', '/userRegistration'].includes(this.$route.path);
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout');
+      this.$router.replace('login');
+    },
+  },
+};
+</script>
 <style scoped>
 header {
   width: 100%;
@@ -63,5 +82,8 @@ header ul {
   margin: 0;
   padding: 0;
   display: flex;
+}
+li {
+  margin-right: 1rem;
 }
 </style>

@@ -29,7 +29,7 @@ export default {
   color: white;
 }
 .backend {
-  background-color: #f391e3;
+  background-color: #e94dcf;
   color: white;
 }
 .career {

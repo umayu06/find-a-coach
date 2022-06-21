@@ -12,6 +12,17 @@ import TheHeader from './components/layout/TheHeader.vue';
 
 export default {
   name: 'App',
+  created() {
+    const token = localStorage.getItem('token');
+    const userData = JSON.parse(token);
+
+    if (userData) {
+      this.$store.dispatch('auth/setUser', userData);
+      this.$router.push('coaches');
+    } else {
+      this.$router.push('login');
+    }
+  },
   components: {
     TheHeader,
   },

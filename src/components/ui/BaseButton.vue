@@ -44,17 +44,20 @@ a {
 .flat {
   border: 2px solid #3d008d;
   background-color: #3d008d;
-  color: #f391e3;
+  color: whitesmoke;
 }
 .outline {
   border: 2px solid #3d008d;
   color: #3d008d;
 }
 .flat:hover {
-  border: 2px solid #f391e3;
+  border: 2px solid whitesmoke;
 }
 .outline:hover {
-  border: 2px solid #3d008d;
+  border: 0;
   background-color: #f391e3;
+}
+.disableClick {
+  pointer-events: none;
 }
 </style>

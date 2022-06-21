@@ -1,12 +1,16 @@
 export default {
   async addRequest(context, payload) {
-    const response = await fetch(
-      `https://connect-92480-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${payload.coachId}.json`,
-      {
-        method: 'POST',
-        body: JSON.stringify(payload),
-      }
-    );
+    const { coachId, ...contactData } = payload;
+    const token = context.rootGetters['auth/token'];
+
+    const response = await fetch(`http://localhost:3000/user/contactDetails/${coachId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'access-token': JSON.parse(token),
+      },
+      body: JSON.stringify(contactData),
+    });
 
     if (!response.ok) {
       const error = new Error(response.message || 'Failed to fetch data!');
@@ -17,23 +21,21 @@ export default {
   },
 
   async loadRequests(context) {
-    const response = await fetch(
-      `https://connect-92480-default-rtdb.asia-southeast1.firebasedatabase.app/requests/${context.rootGetters.userId}.json`
-    );
+    const userId = context.rootGetters['auth/userId'];
+    const token = context.rootGetters['auth/token'];
+    const response = await fetch(`http://localhost:3000/user/requests/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'access-token': JSON.parse(token),
+      },
+    });
 
     if (!response.ok) {
       const error = new Error(response.message || 'Failed to fetch data!');
       throw error;
     }
-    const responseData = await response.json();
-    const requests = [];
-    for (const key in responseData) {
-      const newRequest = {
-        id: key,
-        ...responseData[key],
-      };
-      requests.push(newRequest);
-    }
+    const requests = await response.json();
     context.commit('setRequests', requests);
   },
 };

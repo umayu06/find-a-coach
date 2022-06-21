@@ -1,25 +1,5 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-controls" :class="{ invalid: !formData.firstName.isValid }">
-      <label for="firstName">First Name</label>
-      <input
-        type="text"
-        id="firstName"
-        v-model.trim="formData.firstName.value"
-        @input="clearValidity('firstName')"
-      />
-      <p v-if="!formData.firstName.isValid">First Name must not be empty</p>
-    </div>
-    <div class="form-controls" :class="{ invalid: !formData.lastName.isValid }">
-      <label for="lastName">Last Name</label>
-      <input
-        type="text"
-        id="lastName"
-        v-model.trim="formData.lastName.value"
-        @input="clearValidity('lastName')"
-      />
-      <p v-if="!formData.lastName.isValid">Last Name must not be empty</p>
-    </div>
     <div class="form-controls" :class="{ invalid: !formData.hourlyRate.isValid }">
       <label for="rate">Hourly Rate</label>
       <input
@@ -87,14 +67,6 @@ export default {
   data() {
     return {
       formData: {
-        firstName: {
-          value: '',
-          isValid: true,
-        },
-        lastName: {
-          value: '',
-          isValid: true,
-        },
         hourlyRate: {
           value: null,
           isValid: true,
@@ -128,12 +100,9 @@ export default {
     },
     submitForm() {
       this.validateForm();
-
       if (!this.formIsValid) return;
 
       const formData = {
-        firstName: this.formData.firstName.value,
-        lastName: this.formData.lastName.value,
         hourlyRate: this.formData.hourlyRate.value,
         areas: this.formData.areas.value,
         description: this.formData.description.value,
