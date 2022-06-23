@@ -37,6 +37,9 @@ $ cd server
 $ npm install
 ```
 
+6. Update .env file with your mongoDB url
+
+
 ### Compile and Hot-Reload for Development
 
 ```sh
